@@ -26,6 +26,8 @@ npm run dev:full
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+The JSON server is running on [http://localhost:4000](http://localhost:4000). Here you can see the API endpoints and test them.
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 ## JSON Server Setup
@@ -55,7 +57,7 @@ The mock server (running on port 4000) provides the following endpoints:
 - `GET /products`: Get all products
 - `GET /products/:id`: Get a single product by ID
 - `GET /products/category/:category`: Get products by category
-- `GET /categories`: Get all categories (if available)
+- `GET /categories`: Get all categories
 - `GET /categories/:slug`: Get a category by slug
 
 ### Pagination & Sorting (json-server 0.17.4)
