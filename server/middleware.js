@@ -1,9 +1,61 @@
 const url = require("url");
 
 module.exports = (req, res, next) => {
-    const _send = res.send;
+    // if the request method is POST
+    if (req.method === 'POST') {
+        const requiredFields = ['title', 'price', 'description', 'thumbnail', 'categoryId', 'brand'];
+        const missingFields = requiredFields.filter(field => !req.body || !req.body[field]);
+
+        if (missingFields.length > 0) {
+            return res.status(400).json({
+                error: `Missing required fields: ${missingFields.join(', ')}`
+            });
+        }
+
+
+        // add meta data to the request/new post
+        const now = new Date().toISOString();
+        req.body.meta = {
+            ...req.body.meta,
+            createdAt: now,
+            updatedAt: now,
+        };
+
+        // Generate ID and SKU
+        try {
+            const fs = require('fs');
+            const path = require('path');
+            const dbPath = path.join(__dirname, 'products.json');
+            const dbData = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
+            const { products, categories } = dbData;
+
+            // Generate ID
+            const lastId = products.length > 0 ? Math.max(...products.map(p => p.id)) : 0;
+            const newId = lastId + 1;
+            req.body.id = newId;
+
+            // Find Category Code
+            const category = categories.find(c => c.id === parseInt(req.body.categoryId));
+            const catCode = category ? (category.slug || category.name).slice(0, 3).toUpperCase() : 'GEN';
+
+            // Generate Bra Code
+            const braCode = (req.body.brand || 'GEN').slice(0, 3).toUpperCase();
+
+            // Generate Title Code
+            const titleCode = (req.body.title || 'UNK').slice(0, 3).toUpperCase();
+
+            // SKU Pattern: CAT-BRA-TIT-ID
+            req.body.sku = `${catCode}-${braCode}-${titleCode}-${newId}`;
+
+        } catch (error) {
+            console.error("Error generating SKU:", error);
+            // Fallback unique SKU if generation fails
+            req.body.sku = `GEN-GEN-GEN-${Date.now()}`;
+        }
+    }
 
     // we override the res.send() method to add some pagination logic to the response
+    const _send = res.send;
     res.send = function (data) {
         // only do this if we use GET and the status code is 200, that is if the response is successful
         if (req.method === "GET" && res.statusCode === 200) {
