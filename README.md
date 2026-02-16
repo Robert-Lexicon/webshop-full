@@ -60,6 +60,22 @@ The mock server (running on port 4000) provides the following endpoints:
 - `GET /categories`: Get all categories
 - `GET /categories/:slug`: Get a category by slug
 
+### Create Product
+- `POST /products`: Create a new product
+
+**Required Fields:**
+- `title`: String
+- `price`: Number
+- `description`: String
+- `thumbnail`: URL String
+- `categoryId`: Number (ID of an existing category)
+- `brand`: String
+
+**Auto-generated Fields:**
+- `id`: Sequential ID
+- `sku`: Generated SKU (format: CAT-BRA-TIT-ID)
+- `meta`: Creation and update timestamps
+
 ### Pagination & Sorting (json-server 0.17.4)
 See [json-server documentation](https://github.com/typicode/json-server/tree/v0.17.4) for more information.
 
