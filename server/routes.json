@@ -1,6 +1,4 @@
 {
-    "/products/*": "/$1",
     "/products/category/:category": "/products?category=:category",
-    "/categories/:slug": "/categories?slug=:slug",
-    "/categories/*": "/$2"
+    "/categories/:slug": "/categories?slug=:slug"
 }
