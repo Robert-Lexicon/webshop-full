@@ -58,7 +58,7 @@ module.exports = (req, res, next) => {
     const _send = res.send;
     res.send = function (data) {
         // only do this if we use GET and the status code is 200, that is if the response is successful
-        if (req.method === "GET" && res.statusCode === 200) {
+        if (req.method === "GET" && res.statusCode === 200 && req.url.includes('products')) {
             try {
                 // we use the JSON.parse() method to parse the data from the response
                 const parsedData = JSON.parse(data);
