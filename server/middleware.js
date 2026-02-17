@@ -36,10 +36,10 @@ module.exports = (req, res, next) => {
 
             // Find Category Code
             const category = categories.find(c => c.id === parseInt(req.body.categoryId));
-            const catCode = category ? (category.slug || category.name).slice(0, 3).toUpperCase() : 'GEN';
+            const catCode = category ? (category.slug || category.name).slice(0, 3).toUpperCase() : 'CAT';
 
             // Generate Bra Code
-            const braCode = (req.body.brand || 'GEN').slice(0, 3).toUpperCase();
+            const braCode = (req.body.brand || 'BRD').slice(0, 3).toUpperCase();
 
             // Generate Title Code
             const titleCode = (req.body.title || 'UNK').slice(0, 3).toUpperCase();
@@ -50,7 +50,7 @@ module.exports = (req, res, next) => {
         } catch (error) {
             console.error("Error generating SKU:", error);
             // Fallback unique SKU if generation fails
-            req.body.sku = `GEN-GEN-GEN-${Date.now()}`;
+            req.body.sku = `CAT-BRD-UNK-${Date.now()}`;
         }
     }
 
