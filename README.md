@@ -56,6 +56,8 @@ The mock server (running on port 4000) provides the following endpoints:
 - `GET /products`: Get all products
 - `GET /products/:id`: Get a single product by ID
 - `GET /categories`: Get all categories
+- `GET /categories/:id`: Get a category by ID
+- `GET /categories?slug=furniture`: Get a category by slug
 
 ### Create Product
 - `POST /products`: Create a new product
