@@ -39,7 +39,6 @@ This project uses [json-server](https://github.com/typicode/json-server/tree/v0.
 The server configuration files are located in the `server/` directory:
 
 -   `server/products.json`: The database file containing the product data.
--   `server/routes.json`: Custom routes configuration.
 -   `server/middleware.js`: Custom middleware for the server.
 
 ### Scripts
@@ -56,9 +55,7 @@ The mock server (running on port 4000) provides the following endpoints:
 ### Resources
 - `GET /products`: Get all products
 - `GET /products/:id`: Get a single product by ID
-- `GET /products/category/:category`: Get products by category
 - `GET /categories`: Get all categories
-- `GET /categories/:slug`: Get a category by slug
 
 ### Create Product
 - `POST /products`: Create a new product
