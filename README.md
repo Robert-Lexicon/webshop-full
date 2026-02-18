@@ -91,7 +91,6 @@ Use `_sort` and `_order` to sort data:
 - `GET /products?_sort=price,title&_order=desc,asc` (Sort by multiple fields)
 
 #### Filtering
-- `GET /products?category=beauty` (Filter by category)
 - `GET /products?price_gte=10&price_lte=50` (Price between 10 and 50)
 - `GET /products?q=mascara` (Full-text search)
 
