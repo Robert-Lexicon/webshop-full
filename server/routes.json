@@ -1,4 +1,0 @@
-{
-    "/products/category/:category": "/products?category=:category",
-    "/categories/:slug": "/categories?slug=:slug"
-}
