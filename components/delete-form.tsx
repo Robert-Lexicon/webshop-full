@@ -1,8 +1,5 @@
 import Form from "next/form";
-import {
-  deleteProduct,
-  deleteProductBind,
-} from "@/app/products/create/actions";
+import { deleteProduct, deleteProductBind } from "@/lib/actions";
 
 // Here we pass the formData along and get the id from that in the action
 export function DeleteForm({ id }: { id: string }) {
