@@ -1,5 +1,5 @@
-import type { ProductFormData, ProductsResponse } from "@/app/types";
 import { API_URL } from "@/lib/config";
+import type { ProductFormData, ProductsResponse } from "@/lib/types";
 import "server-only";
 
 const defaultLimit = "6";

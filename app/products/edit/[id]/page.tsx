@@ -1,6 +1,6 @@
-import type { Product } from "@/app/types";
 import EditForm from "@/components/edit-form";
 import { API_URL } from "@/lib/config";
+import type { Product } from "@/lib/types";
 
 export default async function UpdatePage({
   params,

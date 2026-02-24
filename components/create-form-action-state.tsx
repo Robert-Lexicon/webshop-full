@@ -1,8 +1,8 @@
 "use client";
 import Form from "next/form";
 import { useActionState } from "react";
-import type { ProductFormData } from "@/app/types";
 import { type ActionState, addProductActionState } from "@/lib/actions";
+import type { ProductFormData } from "@/lib/types";
 
 // we set the initial state to null
 const initialState: ActionState = null;

@@ -1,7 +1,7 @@
 import Form from "next/form";
-import type { Category, Product } from "@/app/types";
 import { updateProduct } from "@/lib/actions";
 import { API_URL } from "@/lib/config";
+import type { Category, Product } from "@/lib/types";
 
 export default async function EditForm({ product }: { product: Product }) {
   // one warning here, if we change this to a client component we need to pass the categories as a prop to it from the page or such
