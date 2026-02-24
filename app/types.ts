@@ -53,3 +53,16 @@ export interface ProductsResponse {
   page: number;
   pages: number;
 }
+
+// We use Pick to only get the fields we want to use in our form submission
+// This is to avoid submitting unnecessary data and to make sure we only submit the data we need
+export type ProductFormData = Pick<
+  Product,
+  | "title"
+  | "brand"
+  | "price"
+  | "description"
+  | "thumbnail"
+  | "categoryId"
+  | "stock"
+>;

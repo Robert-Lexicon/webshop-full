@@ -1,23 +1,15 @@
 import Link from "next/link";
-import { DeleteForm } from "@/components/delete-form";
-import type { ProductsResponse } from "./types";
-
-const API_URL = "http://localhost:4000";
-const defaultLimit = "6";
+import { DeleteFormAlt } from "@/components/delete-form";
+import { getProducts } from "@/lib/db";
 
 export default async function Home() {
-  // we use the fetch() method to get the products from the API
-  // in this fetch we sort using _sort and _order and we limit the number of products using _limit
-  // we also use _expand to get the relational category data
-  // we can use the other destructed variables like page, total and so on to create pagination or show info
-  const { products, total, page, pages, limit }: ProductsResponse = await fetch(
-    `${API_URL}/products/?_limit=${defaultLimit}&_sort=id&_order=desc&_expand=category`,
-  ).then((res) => res.json());
+  // always better to move the fetching out to to a place where all our data fetching is done - a Data Access Layer
+  const products = await getProducts();
 
-  console.log(products);
-
+  // the table should be a table,
+  // I just don't want to spoil your process in making it :)
   return (
-    <main className="grid">
+    <main className="container mx-auto grid px-8">
       <header className="flex justify-between">
         <h1>Products</h1>
         <Link className="bg-neutral-200 rounded p-4" href="/products/create">
@@ -26,12 +18,14 @@ export default async function Home() {
       </header>
       <div>
         {products.map((product) => (
-          <div key={product.id} className="border-b flex gap-4">
+          <div key={product.id} className="border-b flex justify-between gap-4">
             <h2>
               {product.title} - {product.category?.name}
             </h2>
-            <Link href={`/products/edit/${product.id}`}>Edit</Link>
-            <DeleteForm id={product.id.toString()} />
+            <div className="flex gap-4">
+              <DeleteFormAlt id={product.id.toString()} />
+              <Link href={`/products/edit/${product.id}`}>Edit</Link>
+            </div>
           </div>
         ))}
       </div>

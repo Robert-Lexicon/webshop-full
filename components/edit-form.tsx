@@ -4,6 +4,7 @@ import { updateProduct } from "@/lib/actions";
 import { API_URL } from "@/lib/config";
 
 export default async function EditForm({ product }: { product: Product }) {
+  // one warning here, if we change this to a client component we need to pass the categories as a prop to it from the page or such
   const categories: Category[] = await fetch(`${API_URL}/categories`).then(
     (res) => res.json(),
   );
@@ -12,7 +13,7 @@ export default async function EditForm({ product }: { product: Product }) {
   //const editWithBind = updateProductBind.bind(null, id)
 
   return (
-    <Form action={updateProduct} classID="grid gap-4">
+    <Form action={updateProduct} className="grid gap-4">
       <input readOnly name="id" value={product.id} />
       <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 items-center">
         <label className="font-semibold" htmlFor="title">
